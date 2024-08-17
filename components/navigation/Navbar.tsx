@@ -1,8 +1,11 @@
+"use client";
+
 import React, { memo } from "react";
 import {
   Box,
   Flex,
   IconButton,
+  Avatar,
   Input,
   InputGroup,
   InputLeftElement,
@@ -31,8 +34,6 @@ const Navbar: React.FC<NavbarProps> = memo(({ onOpen }) => {
       color={color}
       boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
       transition="background-color 0.3s ease-in-out"
-      overflow="hidden"  // Ensure no overflow
-      wrap="wrap"        // Allow wrapping of Flex items
     >
       <IconButton
         aria-label="Open Menu"
@@ -41,16 +42,16 @@ const Navbar: React.FC<NavbarProps> = memo(({ onOpen }) => {
         display={{ base: "flex", md: "none" }}
         _hover={{ bg: "blue.500" }}
       />
-      <Box p={6} fontWeight="bold" fontSize="xl" overflow="hidden" flexShrink={0}>
+      <Box p={6} fontWeight="bold" fontSize="xl">
         BPSPAM Dashboard
       </Box>
-      <InputGroup display={{ base: "none", md: "flex" }} w={{ base: "full", md: "60%" }} maxW="600px">
+      <InputGroup display={{ base: "none", md: "flex" }} w="60%">
         <InputLeftElement pointerEvents="none">
           <SearchIcon color="gray.300" />
         </InputLeftElement>
         <Input type="search" placeholder="Search..." />
       </InputGroup>
-      <Flex alignItems="center" ml={2} overflow="hidden" wrap="wrap" flexShrink={0}>
+      <Flex alignItems="center">
         <IconButton
           aria-label="Notifications"
           icon={<BellIcon />}
@@ -60,13 +61,10 @@ const Navbar: React.FC<NavbarProps> = memo(({ onOpen }) => {
         <Button
           alignItems="center"
           onClick={toggleColorMode}
-          m={2}
           _hover={{ bg: useColorModeValue("gray.200", "gray.600") }}
           borderRadius="full"
           _focus={{ boxShadow: "none" }}
-          transition="background-color 0.3s ease"
-          p={3}  // Adjust padding to ensure button fits
-          minW="auto" // Adjust width to fit content
+mr={4}
         >
           {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
         </Button>
