@@ -1,6 +1,4 @@
-"use client";
-
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import {
   Box,
   Flex,
@@ -12,10 +10,6 @@ import {
   useColorMode,
   useColorModeValue,
   Button,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerOverlay,
 } from "@chakra-ui/react";
 import { HamburgerIcon, BellIcon, SearchIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 
@@ -28,8 +22,6 @@ const Navbar: React.FC<NavbarProps> = memo(({ onOpen }) => {
   const bg = useColorModeValue("blue.800", "blue.900");
   const color = useColorModeValue("gray.100", "gray.100");
 
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
   return (
     <Flex
       h={16}
@@ -40,6 +32,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onOpen }) => {
       color={color}
       boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
       transition="background-color 0.3s ease-in-out"
+      overflow="hidden"  // Ensure no overflow
     >
       <IconButton
         aria-label="Open Menu"
@@ -48,58 +41,34 @@ const Navbar: React.FC<NavbarProps> = memo(({ onOpen }) => {
         display={{ base: "flex", md: "none" }}
         _hover={{ bg: "blue.500" }}
       />
-
-      <Box p={6} fontWeight="bold" fontSize="xl">
+      <Box p={6} fontWeight="bold" fontSize="xl" overflow="hidden">
         BPSPAM Dashboard
       </Box>
-
-      <InputGroup display={{ base: "none", md: "flex" }} w="60%">
+      <InputGroup display={{ base: "none", md: "flex" }} w={{ base: "full", md: "60%" }} maxW="600px">
         <InputLeftElement pointerEvents="none">
           <SearchIcon color="gray.300" />
         </InputLeftElement>
         <Input type="search" placeholder="Search..." />
       </InputGroup>
-
-      <IconButton
-        aria-label="Search"
-        icon={<SearchIcon />}
-        onClick={() => setIsSearchOpen(true)}
-        display={{ base: "flex", md: "none" }}
-        ml={4}
-      />
-
-      <Flex alignItems="center">
+      <Flex alignItems="center" ml={2} overflow="hidden">
         <IconButton
           aria-label="Notifications"
           icon={<BellIcon />}
-          m={4}
+          m={2}
           _hover={{ bg: "blue.500" }}
         />
         <Button
           alignItems="center"
           onClick={toggleColorMode}
-          p={4}
+          m={2}
           _hover={{ bg: useColorModeValue("gray.200", "gray.600") }}
           borderRadius="full"
           _focus={{ boxShadow: "none" }}
+          transition="background-color 0.3s ease"
         >
           {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
         </Button>
       </Flex>
-
-      <Drawer isOpen={isSearchOpen} placement="top" onClose={() => setIsSearchOpen(false)}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerBody>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="gray.300" />
-              </InputLeftElement>
-              <Input type="search" placeholder="Search..." />
-            </InputGroup>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </Flex>
   );
 });
