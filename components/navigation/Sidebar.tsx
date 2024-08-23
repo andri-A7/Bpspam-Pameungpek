@@ -57,10 +57,20 @@ const Sidebar: React.FC<SidebarProps> = memo(({ onClose, isOpen, toggleSidebar }
   const textProfile = useColorModeValue("black", "white");
 
   const menuItems: MenuItems = useMemo(() => ({
-    Dashboard: [{ label: "Dashboard", icon: FaTachometerAlt, href: "/admin/dashboard" }],
-    Accounts: [
+    Apps: [
+      { label: "Dashboard",
+         icon: FaTachometerAlt, 
+         href: "/admin/dashboard" },
       {
-        label: "Manajemen Akun",
+        label: "Maintenance",
+        icon: FaCog,
+        subItems: [{ label: "Backup & Restore", href: "/admin/backup_restore" }],
+      },
+
+    ],
+    Management: [
+      {
+        label: "Akun",
         icon: FaUsers,
         subItems: [
           { label: "Petugas", href: "/admin/accounts/officer" },
@@ -68,26 +78,22 @@ const Sidebar: React.FC<SidebarProps> = memo(({ onClose, isOpen, toggleSidebar }
           { label: "Pengguna Air", href: "/admin/accounts/water_users" },
         ],
       },
-    ],
-    WaterManagement: [
+      { label: "Tagihan",
+         icon: FaFileAlt,
+          href: "/admin/billing" 
+        },
       {
-        label: "Manajemen Air",
+        label: "Air",
         icon: FaTint,
         subItems: [
           { label: "Pembacaan Meter", href: "/admin/water_management/meter_reading" },
-          { label: "Manajemen Harga", href: "/admin/water_management/tariffs" },
+          { label: "Tarif Harga", href: "/admin/water_management/tariffs" },
         ],
       },
+      { label: "Tugas", icon: FaDatabase, href: "/admin/tasks" },
+
     ],
-    Billing: [{ label: "Tagihan", icon: FaFileAlt, href: "/admin/billing" }],
-    Maintenance: [
-      {
-        label: "Pemeliharaan Sistem",
-        icon: FaCog,
-        subItems: [{ label: "Backup & Restore", href: "/admin/backup_restore" }],
-      },
-    ],
-    Tasks: [{ label: "Manajemen Tugas", icon: FaDatabase, href: "/admin/tasks" }],
+
     Reporting: [
       {
         label: "Pelaporan",
