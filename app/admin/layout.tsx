@@ -90,6 +90,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             display={{ base: "none", md: "block" }}
             transition="width 0.01s"
             overflowY="auto"
+            overflowX="hidden"
           >
             <Sidebar
               onClose={() => {}}
