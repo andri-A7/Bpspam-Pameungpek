@@ -87,7 +87,7 @@ const Sidebar: React.FC<SidebarProps> = memo(({ onClose, isOpen, toggleSidebar }
         icon: FaTint,
         subItems: [
           { label: "Pembacaan Meter", href: "/admin/water_management/meter_reading" },
-          { label: "Tarif Harga", href: "/admin/water_management/tariffs" },
+          { label: "Tarif Harga", href: "/admin/water_management/tarif" },
         ],
       },
       { label: "Tugas", icon: FaDatabase, href: "/admin/tasks" },
@@ -107,7 +107,7 @@ const Sidebar: React.FC<SidebarProps> = memo(({ onClose, isOpen, toggleSidebar }
   }), []);
 
   return (
-    <Flex direction="column" justifyContent="space-between" h="full" p={4} bg={bg} color={color}>
+    <Flex direction="column"overflowY="hidden" justifyContent="space-between" h="full" p={4} bg={bg} color={color}>
       <VStack align="start" spacing={4} w="full">
         <Box display={{ base: "none", md: "block" }} alignSelf="flex-end">
           <IconButton
